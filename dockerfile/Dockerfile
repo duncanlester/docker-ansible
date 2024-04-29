@@ -18,8 +18,8 @@ RUN apt-get update \
   sudo \
   less \
   # #new
-  # gcc \
-  # python3-dev \
+  gcc \
+  python3-dev \
   # #end-new
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
@@ -36,20 +36,20 @@ RUN chmod 0440 /etc/sudoers.d/$USERNAME
 
 RUN pip3 install --no-cache-dir \
   ansible \
-  # ansible-cmdb \
-  # ansible-runner \
-  # ansible-builder \
-  # ansible-test \
+  ansible-cmdb \
+  ansible-runner \
+  ansible-builder \
+  ansible-test \
   ara \
   hvac \
-  # molecule \
+  molecule \
   dnspython \
   jmespath \
   "hvac[parser]" \
   certifi \
   ansible-lint \
-  ansible-modules-hashivault
-# ansible-autodoc
+  ansible-modules-hashivault\
+  ansible-autodoc
 
 # COPY --from=hashicorp/consul-template /consul-template /usr/local/bin/consul-template
 # COPY --from=hashicorp/envconsul /bin/envconsul /usr/local/bin/envconsul

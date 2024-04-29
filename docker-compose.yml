@@ -2,6 +2,9 @@ version: '3'
 services:
   ansible:
     build:
-      context: ./docker/Dockerfile
+      context: ./docker
       dockerfile: Dockerfile
     image: result/latest
+    volumes:
+      - /var/lib/nifi/database_repository:/Users/duncanlester/dev/docker-config-manager/nifi-current/database_repository
+
