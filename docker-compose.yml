@@ -2,11 +2,13 @@ version: '3'
 services:
   ansible:
     build:
-      context: ./docker
+      context: ./dockerfile
       dockerfile: Dockerfile
     image: result/latest
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     volumes:
-      - /Users/duncanlester/dev/docker-centos8-ansible:/home
+      - /Users/duncanlester/dev/docker-ansible:/home
       - /var/run/docker.sock:/var/run/docker.sock
 # docker run -it --rm -v /Users/duncanlester/dev/docker-centos8-ansible:/home \
 #       -v /var/run/docker.sock:/var/run/docker.sock \
@@ -45,3 +47,6 @@ services:
 #       -v /var/run/docker.sock:/var/run/docker.sock \
 #       --name ansible centos8-ansible:latest bash
 # python3 -m venv .venv
+
+# docker-compose exec server bash
+# docker-compose down --rmi local
