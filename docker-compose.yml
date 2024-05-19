@@ -6,5 +6,42 @@ services:
       dockerfile: Dockerfile
     image: result/latest
     volumes:
-      - /var/lib/nifi/database_repository:/Users/duncanlester/dev/docker-config-manager/nifi-current/database_repository
+      - /Users/duncanlester/dev/docker-centos8-ansible:/home
+      - /var/run/docker.sock:/var/run/docker.sock
+# docker run -it --rm -v /Users/duncanlester/dev/docker-centos8-ansible:/home \
+#       -v /var/run/docker.sock:/var/run/docker.sock \
+#       --name ansible centos8-ansible:latest bash
 
+# docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro centos8-ansible:latest --volume=/Users/duncanlester/dev/docker-centos8-ansible:/etc/ansible/roles/role_under_test:ro
+
+# docker exec --tty dc13b3b6e8148cc27ac812755d390a5b7711414537893b08e39bfe80ad67f35c env TERM=xterm ansible --version
+
+# docker exec -it -v /Users/duncanlester/dev/docker-centos8-ansible:/home ansible bash
+
+
+# docker run -it --rm -v /Users/duncanlester/dev/docker-centos8-ansible:/home --name ansible centos8-ansible:latest bash
+
+# molecule init role ansible-role-redis --driver-name docker --verifier-name testinfra
+
+
+
+# molecule init role ansible-role-redis --driver-name docker python3 -m
+# molecule init role ansible-role-redis --driver-name docker
+# ansible-galaxy role init ansible-role-redis cd ansible-role-redis
+# python3 -m molecule init scenario --driver-name docker --verifier-name testinfra
+# python3 -m molecule init role isri.redis --driver-name docker --verifier-name testinfra
+# docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume='pwd':/etc/ansible/roles/role_under_test:ro geerlingguy/docker-centos8-ansible:latest
+# docker exec --tty 525acc0371b4a8aeb6a7138606bf6d68542073a4851cc647f13dc6b838fbd002 env TERM=xterm ansible --version b.
+# docker exec --tty 525acc0371b4a8aeb6a7138606bf6d68542073a4851cc647f13dc6b838fbd002 env TERM=xterm ansible-playbook /path/to/ansible/playbook.yml --syntax-check
+# ansible-galaxy collection install ansible.posix
+
+
+# steps:
+# 1. if not created
+# molecule init role isri.redis --driver-name docker --verifier-name testinfra
+
+# 2.
+# docker run -it --rm -v /Users/duncanlester/dev/docker-centos8-ansible:/home \
+#       -v /var/run/docker.sock:/var/run/docker.sock \
+#       --name ansible centos8-ansible:latest bash
+# python3 -m venv .venv
