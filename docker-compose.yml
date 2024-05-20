@@ -7,9 +7,12 @@ services:
     image: result/latest
     stdin_open: true # docker run -i
     tty: true        # docker run -t
+    # environment:
+    #   ANSIBLE_CONFIG: ../ansible.cfg
     volumes:
       - ./:/home
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./ansible.cfg:/etc/ansible/ansible.cfg
 
 # steps:
 # 1. if not created
