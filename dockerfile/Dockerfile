@@ -32,6 +32,7 @@ RUN yum makecache --timer \
   python3-pip \
   python3-devel \
   @development \
+  yum-utils \
   && yum clean all
 RUN pip3 install --user --upgrade pip
 # Install Ansible via Pip.
@@ -49,6 +50,9 @@ RUN echo "export PATH=$PATH:~/.local/bin" >> ~/.bashrc
 RUN cat ~/.bashrc
 RUN source ~/.bashrc
 RUN echo $PATH
+
+RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+RUN yum -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 VOLUME ["/sys/fs/cgroup"]
 CMD ["/usr/lib/systemd/systemd"]
