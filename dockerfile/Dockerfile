@@ -28,12 +28,24 @@ RUN yum makecache --timer \
   sudo \
   which \
   hostname \
-  python3 \
-  python3-pip \
-  python3-devel \
   @development \
   yum-utils \
+  wget \
+  openssl-devel \
+  bzip2-devel \
+  libffi-devel \
   && yum clean all
+
+RUN wget https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tgz
+RUN tar xzf Python-3.9.6.tgz
+RUN rm -rf Python-3.9.6.tgz
+RUN cd Python-3.9.6 && ./configure --enable-optimizations && make altinstall
+
+RUN yum -y install \
+  python3-pip \
+  python3-devel \
+  && yum clean all
+
 RUN pip3 install --user --upgrade pip
 # Install Ansible via Pip.
 RUN pip3 install --user $pip_packages
