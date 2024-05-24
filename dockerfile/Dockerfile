@@ -66,6 +66,7 @@ RUN echo $PATH
 RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 RUN yum -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 RUN curl https://pyenv.run | bash
+
 RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 RUN echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc
