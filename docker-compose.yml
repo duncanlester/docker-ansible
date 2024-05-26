@@ -10,26 +10,27 @@ services:
     # environment:
     #   ANSIBLE_CONFIG: ../ansible.cfg
     volumes:
-      # - ./:/home      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/home
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./ansible.cfg:/etc/ansible/ansible.cfg
 
 # steps:
 ###### interactive shell
 # docker-compose exec -w /home ansible bash
-# 1. if not created
-# molecule init role isri.redis --driver-name docker --verifier-name testinfra
 
 # 2.
 # docker-compose up -d
 # docker-compose exec -w /home/ ansible bash
 ######## virtual env #########
-# 1. create the virtual env if it doesnt exist
+# 3. create the virtual env if it doesnt exist
 # python -m venv $VIRTUAL_ENV
 # source $VIRTUAL_ENV/bin/activate
 # Install Ansible via Pip.
 # pip install --user $pip_packages
+# 4. if not created
+# molecule init role isri.redis --driver-name docker --verifier-name testinfra
 
-#3 to shut down the container and remove image
+# to shut down the container and remove image
 # remove image : docker-compose down -v --rmi local
 
 # ansible-galaxy role init my_role
