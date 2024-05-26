@@ -10,32 +10,31 @@ services:
     # environment:
     #   ANSIBLE_CONFIG: ../ansible.cfg
     volumes:
-      - ./:/home
-      - /var/run/docker.sock:/var/run/docker.sock
+      # - ./:/home      - /var/run/docker.sock:/var/run/docker.sock
       - ./ansible.cfg:/etc/ansible/ansible.cfg
 
 # steps:
+###### interactive shell
+# docker-compose exec -w /home ansible bash
 # 1. if not created
 # molecule init role isri.redis --driver-name docker --verifier-name testinfra
 
 # 2.
 # docker-compose up -d
-# docker-compose exec -w /home/redis ansible bash
+# docker-compose exec -w /home/ ansible bash
+######## virtual env #########
+# 1. create the virtual env if it doesnt exist
+# python -m venv $VIRTUAL_ENV
+# source $VIRTUAL_ENV/bin/activate
+# Install Ansible via Pip.
+# pip install --user $pip_packages
 
-# 3.
-# python3.9 -m venv venv39
-# source venv39/bin/activate
-# update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 2
-# update-alternatives --set python3 /usr/bin/python3.9
+#3 to shut down the container and remove image
+# remove image : docker-compose down -v --rmi local
 
-#4. to shut down the container and remove image
-# remove image : docker-compose down --rmi local
-# leave image : docker-compose down
+# ansible-galaxy role init my_role
+# cd my_role
+# molecule init scenario
 
-# /usr/local/bin/python3.9
-# /usr/local/include/python3.9
-# /usr/local/lib/python3.9
-# /home/redis/venv39/bin/python3.9
-# /home/redis/venv39/lib/python3.9
-
-#  pyenv install -l
+# cd ansible-role-splunk-forwarder
+# molecule init scenario default —role-name redis --driver-name docker --verifier-name testinfra
