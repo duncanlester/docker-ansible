@@ -50,10 +50,10 @@ RUN set -ex \
   && pyenv global $PYTHON_VERSION \
   && pyenv virtualenv 3.12.3 ${VENV_NAME} \
   && exec bash \
-  && $PYENV_ROOT/bin/pyenv activate ${VENV_NAME} \
-  && pip install --upgrade pip \
-  && pip install $pip_packages \
-  && source deactivate \
+  # && $PYENV_ROOT/bin/pyenv activate ${VENV_NAME} \
+  # && pip install --upgrade pip \
+  # && pip install $pip_packages \
+  # && source deactivate \
   && pyenv rehash
 # RUN 'eval "$(pyenv init -)"' && $HOME/.pyenv/bin/pyenv activate ${container}-${pythonversion}
 
@@ -64,7 +64,7 @@ RUN set -ex \
 RUN locale-gen en_US.UTF-8
 
 # Install Ansible via Pip.
-RUN pip3 install $pip_packages
+# RUN pip3 install $pip_packages
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl

@@ -9,7 +9,11 @@ services:
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     volumes:
-      - ./:/home
+      - source: ./ansible
+        target: /root/ansible
+        type: bind
+        bind:
+          create_host_path: true
       - /var/run/docker.sock:/var/run/docker.sock
       - ./ansible.cfg:/etc/ansible/ansible.cfg
 
@@ -17,16 +21,16 @@ services:
 ###### interactive shell
 # 1.
 # docker-compose up -d
-# docker-compose exec -w /home/ ansible bash
+# docker-compose exec -w /root/ ansible bash
 ######## virtual env #########
 # 3. create the virtual env if it doesnt exist
-# pyenv activate docker-3.12.3
+# pyenv activate venv-3.12.3
 # Install Ansible via Pip.
 # pip install $pip_packages
 # 4. if not created
 # ansible-galaxy role init redis
 # cd redis
-# molecule init scenario --driver docker
+# molecule init scenario --driver-name docker
 # molecule init scenario default —role-name redis --driver docker --verifier-name testinfra
 # molecule init role isri.redis --driver-name docker --verifier-name testinfra
 # to shut down the container and remove image
